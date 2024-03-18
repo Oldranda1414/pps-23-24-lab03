@@ -2,6 +2,7 @@ package u03
 
 import u02.AnonymousFunctions.l
 import u03.Optionals.Optional
+import u03.Streams.Stream.empty
 
 object Sequences: // Essentially, generic linkedlists
   
@@ -25,12 +26,28 @@ object Sequences: // Essentially, generic linkedlists
       case Nil()                 => Nil()
 
     // Lab 03
-    def zip[A, B](first: Sequence[A], second: Sequence[B]): Sequence[(A, B)] = ???
+    def zip[A, B](first: Sequence[A], second: Sequence[B]): Sequence[(A, B)] = first match
+      case Cons(h1, t1) => second match
+        case Cons(h2, t2) => Cons((h1, h2), zip(t1, t2))
+        case _ => Nil()
+      case _ => Nil()
+      
 
-    def take[A](l: Sequence[A])(n: Int): Sequence[A] = ???
+    def take[A](l: Sequence[A])(n: Int): Sequence[A] = l match
+      case Cons(head, tail) if n > 0=> Cons(head, take(tail)(n-1))
+      case _  => Nil()
     
-    def concat[A](l1: Sequence[A], l2: Sequence[A]): Sequence[A] = ???
-    def flatMap[A, B](l: Sequence[A])(mapper: A => Sequence[B]): Sequence[B] = ???
+    def concat[A](l1: Sequence[A], l2: Sequence[A]): Sequence[A] = l1 match
+      case Cons(head, tail) => Cons(head, concat(tail, l2))
+      case _ => l2 match
+        case Cons(head, tail) => Cons(head, tail)
+        case _ => Nil()
+      
+    
+    def flatMap[A, B](l: Sequence[A])(mapper: A => Sequence[B]): Sequence[B] = l match
+      case Cons(head, tail) => concat(mapper(head), flatMap(tail)(mapper))
+      case _ => Nil()
+    
 
     def min(l: Sequence[Int]): Optional[Int] = ???
     
