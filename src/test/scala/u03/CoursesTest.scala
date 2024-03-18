@@ -4,7 +4,7 @@ import u02.AlgebraicDataTypes.Person
 import u03.Sequences.Sequence
 import org.junit.* 
 import org.junit.Assert.*
-import u03.Courses.courses
+import u03.Courses.*
 
 class CoursesTest:
     import Person.*
@@ -17,3 +17,4 @@ class CoursesTest:
     @Test def testCourses() =
         val expected: Sequence[String] = Cons("pcd",Cons("pps", Nil()))
         assertEquals(expected, courses(l))
+        assertEquals(expected, l.coursesExtension)

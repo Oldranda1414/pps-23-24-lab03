@@ -3,6 +3,7 @@ package u03
 import Optionals.Optional.*
 import org.junit.*
 import org.junit.Assert.*
+import FoldLeft.*
 
 class SequenceTest:
   import u03.Sequences.*
@@ -53,4 +54,8 @@ class SequenceTest:
 
     assertEquals(70, foldLeft(l)(10)(_ + _))
     assertEquals(-60, foldLeft(l)(0)(_ - _))
+    assertEquals("Hello, World!", foldLeft(stringSeq)("")(_ + _))
+
+    assertEquals(70, l.foldLeftExtension(10)(_ + _))
+    assertEquals(-60, l.foldLeftExtension(0)(_ - _))
     assertEquals("Hello, World!", foldLeft(stringSeq)("")(_ + _))

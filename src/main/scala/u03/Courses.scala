@@ -12,3 +12,10 @@ object Courses:
         case Teacher(_, course) => Cons(course, Nil())
         case _ => Nil()
       )
+
+
+    extension (l: Sequence[Person]) def coursesExtension: Sequence[String] = 
+        flatMap(l)(_ match
+        case Teacher(_, course) => Cons(course, Nil())
+        case _ => Nil()
+      )
