@@ -53,6 +53,11 @@ object Sequences: // Essentially, generic linkedlists
         case Optional.Just(x) if x < head => Optional.Just(x)
         case _ => Optional.Just(head)
       case _ => Optional.Empty()
+
+    def foldLeft[A](l: Sequence[A])(counter: A)(f: (A, A) => A): A = l match
+      case Cons(head, tail) => foldLeft(tail)(f(counter, head))(f)
+      case _ => counter
+    
       
     
     

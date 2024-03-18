@@ -47,3 +47,10 @@ class SequenceTest:
     assertEquals(Just(10), min(l))
     assertEquals(Just(1), min(Cons(1, Nil())))
     assertEquals(Empty(), min(Nil()))
+
+  @Test def testFoldLeft() = 
+    val stringSeq: Sequence[String] = Cons("Hello, ", Cons("World", Cons("!", Nil())))
+
+    assertEquals(70, foldLeft(l)(10)(_ + _))
+    assertEquals(-60, foldLeft(l)(0)(_ - _))
+    assertEquals("Hello, World!", foldLeft(stringSeq)("")(_ + _))
