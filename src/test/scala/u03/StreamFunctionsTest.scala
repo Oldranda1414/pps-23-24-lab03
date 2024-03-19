@@ -7,7 +7,7 @@ import u03.extensionmethods.Streams.Stream
 import u03.extensionmethods.Streams.Stream.*
 import u03.StreamFunctions.* 
 
-class TakeWhileTest:
+class StreamFunctionsTest:
     import Sequences.Sequence.*
 
 
